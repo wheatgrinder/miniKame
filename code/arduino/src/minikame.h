@@ -21,6 +21,7 @@ public:
     void jump();
     void home();
     void zero();
+    void standtall();
     void frontBack(float steps, int period);
 
     void setServo(int id, float target);

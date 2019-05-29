@@ -13,14 +13,17 @@ void MiniKame::init(){
     board_pins[7] = D3; // Servo S7
 
     // Trim values for zero position calibration.
-    trim[0] = 0;
-    trim[1] = -8;
-    trim[2] = 8;
-    trim[3] = 5;
-    trim[4] = 2;
-    trim[5] = -6;
-    trim[6] = 6;
-    trim[7] = 5;
+    trim[0] = -5;  // left front shoulder 
+    trim[1] = -6;  // right front shoulder +10 = angled back
+    trim[2] = 16;   // left front knee 0 is down 2 is higher
+    trim[3] = 6;   // right front knee
+    trim[4] = 15;   // left rear shoulder
+    trim[5] = -5;  // right rear shoulder
+    trim[6] = -8;   // left rear knee
+    trim[7] = -2;   // right rear knee
+
+
+
 
     // Set reverse movement
     for (int i=0; i<8; i++) reverse[i] = false;
@@ -274,6 +277,13 @@ void MiniKame::jump(){
 void MiniKame::home(){
     int ap = 20;
     int hi = 35;
+    int position[] = {90+ap,90-ap,90-hi,90+hi,90-ap,90+ap,90+hi,90-hi};
+    for (int i=0; i<8; i++) setServo(i, position[i]);
+}
+
+void MiniKame::standtall(){
+    int ap = 20;
+    int hi = 80;
     int position[] = {90+ap,90-ap,90-hi,90+hi,90-ap,90+ap,90+hi,90-hi};
     for (int i=0; i<8; i++) setServo(i, position[i]);
 }
